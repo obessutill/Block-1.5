@@ -1,3 +1,5 @@
+// Slider
+
 new Swiper('.swiper', {
     slidesPerView: 1.3,
     spaceBetween: 16,
@@ -10,7 +12,7 @@ new Swiper('.swiper', {
     },
     breakpoints: {
         350: {
-         slidesPerView: 1.35
+            slidesPerView: 1.35
         },
         370: {
             slidesPerView: 1.5
@@ -54,32 +56,25 @@ toggleSlider();
 
 window.addEventListener('resize', toggleSlider);
 
+// Simple js
+
 let elements = document.querySelectorAll('.brands-card');
 let showButton = document.querySelector('.show-button');
 
-let hideCards = function () { 
-    for (let i = elements.length - 1; i >= 6; i--) {
-       elements[i].classList.add('brands-card--hidden');  
+let hideCards = function () {
+    let from = window.innerWidth >= 1120 ? 8 : 6;
+    for (let i = elements.length - 1; i >= from; i--) {
+        elements[i].classList.add('brands-card--hidden');
     }
 }
 
-let hideCardsBig = function() {
-    for (let i = elements.length - 1; i >= 8; i--) {
-        if (elements[i]) {
-            elements[i].classList.add('brands-card--hidden');
-        }
-    }
-};
-
 let allHide = function () {
+    showButton.classList.add('show-button--hidden');
     for (let i = 0; i < elements.length; i++) {
         elements[i].classList.remove('brands-card--hidden');
     }
-    if (window.innerWidth >= 1120) {
-        hideCardsBig();
-    } else {
-        hideCards();
-    }
+    hideCards();
+
 };
 allHide();
 
